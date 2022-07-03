@@ -96,7 +96,7 @@ include('partials-front/menu.php');
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Enter New Password *</label>
-                            <input type="password" minlength="8" class="form-control" name="password" required>
+                            <input type="password" minlength="8" class="form-control" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
                         </div>
 
                         <div class="mb-3">
@@ -109,6 +109,10 @@ include('partials-front/menu.php');
                         </div>
                         <div class="col-6">
                             <button type="reset" style="width: 40%;float:right" class="btn btn-danger">Clear</button>
+                        </div> 
+                        <div class="col-6">
+                        <!-- <a href="login.php" style=" color: #ffc107;">LOGIN</a> -->
+
                         </div> 
                         </div>
                       

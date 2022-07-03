@@ -11,7 +11,9 @@
     <title>Account Creating Form</title>
 </head>
 
-<?php include('partials/menu.php'); ?>
+<?php include('partials/menu.php');
+ $err= array(); 
+  ?>
 
 <body style="background-color: gray;">
     <?php
@@ -37,6 +39,13 @@
                     $password = $_POST['password'];
                     $re_password = $_POST['re_password'];
 
+                    $upercase=preg_match('@[A-Z]@',$password);
+                    $lowercase=preg_match('@[a-z]@',$password);
+                    $number=preg_match('@[0-9]@',$password);
+                    $specialchar=preg_match('@[^\w]@',$password);
+                    if(!$upercase || !$lowercase || !$number || !$specialchar ||strlen($password)<=7){
+                      array_push($err, "password must be include uppercase,lowercase,number and special characters");
+                      }
                     $unerror = chickString($user_name);
 
                     $passerror = chickMuch($password, $re_password);
@@ -90,8 +99,8 @@
                 <form action="" method="post" >
      <input type="text" name="id" id="" placeholder=" id"required >
       <input type="text" name="user_name" id="" placeholder="Enter user name"required>
-     <input type="password" name="password"  placeholder="Enter password"required>
-      <input type="password" name="re_password" id="" placeholder="Enter password again"required>
+     <input type="password" name="password"  placeholder="Enter password"required minlength="8">
+      <input type="password" name="re_password" id="" placeholder="Enter password again"required minlength="8">
       <label> 
         Role :
         </label> 

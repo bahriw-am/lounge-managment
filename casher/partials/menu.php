@@ -29,6 +29,7 @@
                     <li><a href="index.php">Home</a></li>
                     <li><a href="manage-category.php">Category</a></li>
                     <li><a href="manage-food.php">Food</a></li>
+                    <li><a href="manage-Finance.php">Finance</a></li>
                     <li><a href="manage-order.php">Orders<sup style="color:red"><?php if($not>0){
                         echo $not;
                     }?></sup></a></li>
