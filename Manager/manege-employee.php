@@ -120,7 +120,7 @@
                                                {
                                                    echo "<label>De-Activate</label>";
                                                }
-                                               else
+                                               elseif($status=="de-active")
                                                {
                                                    echo "<label >Activate</label>";
                                                }?></a>

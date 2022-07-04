@@ -24,8 +24,8 @@
         ";
         }
         elseif($active=='de-active'){
-            $sql2 = "UPDATE tbl_food SET 
-            active = 'active'
+            $sql2 = "UPDATE employees SET 
+            status = 'active'
             WHERE id=$id
         ";
         }

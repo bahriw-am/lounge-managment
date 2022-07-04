@@ -38,6 +38,7 @@ if(isset($_POST['SIGNUP'])){
     array_push($err, "first name and last name must be alphabet");
   }
   if(!preg_match('/^[0-9]{10}+$/', $phone)) {
+    //preg_match('/((^(\+251|0)\d{3})-?\d{6})/');
   //  echo "<center>";
   //   echo "<p style='color:red'>inValid Phone Number Must</p>";
   //   echo "</center>";
@@ -71,7 +72,10 @@ if(isset($_POST['SIGNUP'])){
        array_push($err, "Email already exist!");
       
       }
-      if ($user['username'] == $username) {
+      $user_check_query = "SELECT * FROM tbl_admin";
+      $result = mysqli_query($conn, $user_check_query);
+      $user1 = mysqli_fetch_assoc($result);
+      if ($user1['username'] == $username) {
         array_push($err, "username already exist!");
        
        }}
@@ -111,9 +115,9 @@ if(isset($_POST['SIGNUP'])){
     ?>
     <form action="signup.php" method="post" >
       <div style="float:left;width:45%">
-      <input type="text" name="fname" id="" placeholder="Enter First name"required >
-      <input type="text" name="lname" id="" placeholder="Enter Last name"required>
-      <input type="text" name="username" id="" placeholder="Enter user name"required>
+      <input type="text" name="fname" id="" placeholder="Enter First name" required pattern="[a-zA-Z]*" title="name must be character">
+      <input type="text" name="lname" id="" placeholder="Enter Last name"required pattern="[a-zA-Z]*" title="name must be character">
+      <input type="text" name="username" id="" placeholder="Enter user name"required minlength="4">
       <input type="email" name="email" id="" placeholder="Enter Email">
       <input type="text" name="phone" id="" placeholder="Enter phone"required>
 </div>

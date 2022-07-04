@@ -1,5 +1,6 @@
 <?php include('partials/menu.php');
-  $err= array();  ?>
+  $err= array(); 
+  $paserr=""; ?>
 
 <div class="main-content">
     <div class="wrapper">
@@ -25,7 +26,7 @@
                     <td>Full Name: </td>
                     <td>
                         <!-- <input type="text" name="full_name" placeholder="Enter Your Name"> -->
-                        <select name="full_name">
+                        <select name="full_name" required> 
 
                             <?php 
                                 //Create PHP Code to display categories from Database
@@ -82,28 +83,50 @@
                 <tr>
                     <td>Username: </td>
                     <td>
-                        <input type="text" name="username" placeholder="Your Username">
+                        <input type="text" name="username" placeholder="Your Username" required minlength="4">
                     </td>
                 </tr>
 
                 <tr>
                     <td>Password: </td>
                     <td>
-                        <input type="password" name="password" placeholder="Your Password">
-                    </td>
+                        <input type="password" name="password" id="pass" placeholder="Your Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required minlength="8">
+                        <input type="checkbox" onclick="myFunction()">Show
+
+<script>
+function myFunction() {
+  var x = document.getElementById("pass");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script></td>
                 </tr>
 
                 <tr>
                     <td>Re-Password: </td>
                     <td>
-                        <input type="password" name="repassword" placeholder="confirm Password">
-                    </td>
+                        <input type="password" name="repassword" id="repass" placeholder="confirm Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required minlength="8">
+                        <input type="checkbox" onclick="myFunction2()">Show
+
+<script>
+function myFunction2() {
+  var x = document.getElementById("repass");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script> </td>
                 </tr>
 
                 <tr>
                     <td>Role: </td>
                     <td>
-        <select name="role">
+        <select name="role" required>
         <option value="Admin">Admin</option>
         <option value="Manager">Manager</option>
         <option value="Casher">Casher</option>
@@ -150,7 +173,14 @@
     
             array_push($err, "The two passwords do not match");
             }
-
+            $pass = md5($_POST['password']); //Password Encryption with MD5
+            $upercase=preg_match('@[A-Z]@',$pass);
+            $lowercase=preg_match('@[a-z]@',$pass);
+            $number=preg_match('@[0-9]@',$pass);
+            $specialchar=preg_match('@[^\w]@',$pass);
+            if(!$upercase || !$lowercase || !$number || !$specialchar){
+              array_push($err, "password must be include uppercase,lowercase,number and special characters");
+              $paserr="password must be include uppercase,lowercase,number and special characters";}
      if (count($err) == 0) {
         //2. SQL Query to Save the data into database
         $sql = "INSERT INTO tbl_admin SET 
@@ -170,7 +200,7 @@
             //Data Inserted
             //echo "Data Inserted";
             //Create a Session Variable to Display Message
-            $_SESSION['add'] = "<div class='success'>Accon Added Successfully.</div>";
+            $_SESSION['add'] = "<div class='success'>Account Added Successfully.</div>";
             $sqls="UPDATE employees set account=1 where  fname='$full_name' and role='$role'";
             $ress = mysqli_query($conn, $sqls);
             //Redirect Page to Manage Admin
@@ -181,10 +211,11 @@
             //FAiled to Insert DAta
             //echo "Faile to Insert Data";
             //Create a Session Variable to Display Message
-            $_SESSION['add'] = "<div class='error'>Failed to Add Admin.</div>";
-            echo $err;
+            $_SESSION['add'] = "<div class='error'>Failed to Add Account.</div>";
+            echo $paserr;
+           include('../err.php');
             //Redirect Page to Add Admin
-            header("location:".SITEURL.'admin/add-admin.php');
+            header("location:".SITEURL.'admin/manage-admin.php');
         }
 
     }

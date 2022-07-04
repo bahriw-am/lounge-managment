@@ -90,13 +90,13 @@
                     <input type="text" name="full-name" value="<?php echo $user ?>" class="input-responsive" required >
 
                     <div class="order-label">Phone Number</div>
-                    <input type="tel" name="contact" placeholder="E.g. 9843xxxxxx" class="input-responsive" required>
+                    <input type="tel" name="contact" placeholder="E.g. 9843xxxxxx" class="input-responsive" required min="0" minlength="10">
 
                     <div class="order-label">Account_No</div>
-                    <input type="number" name="account" placeholder="bank account" class="input-responsive" required>
+                    <input type="number" name="account" placeholder="bank account" class="input-responsive" required min="0"> 
 
                     <div class="order-label">Pincode</div>
-                    <input type="number" name="pincode" placeholder="pin" class="input-responsive" required>
+                    <input type="number" name="pincode" placeholder="pin" class="input-responsive" required min="0">
 
                    
                     <input type="submit" name="submit" value="Confirm Order" class="btn btn-primary">
@@ -166,14 +166,15 @@
                             if($res2==true)
                             {
                                  //Query Executed and Order Saved
-                                $message="<script> alert('Food Ordered Successfully');</script>";
-                                echo $message;
                               //  $_SESSION['order'] = "<div class='success text-center'>Food Ordered Successfully.</div>";
                                 $sql="UPDATE bank set diposit=diposit-$total WHERE account_no=$customer_account";
                                 $res = mysqli_query($conn, $sql);
                                 $sql1="UPDATE bank set diposit=diposit+$total WHERE account_no=1000222";
                                 $ress = mysqli_query($conn, $sql1);
-                              //  header('location:'.SITEURL);
+                                $message="<script> alert('Food Ordered Successfully');</script>";
+                                $message2="<script> alert('Your Current Balance is')+;</script>";
+                                echo $message.'Your Current Balance is';
+                                   //  header('location:'.SITEURL);
                             }
                             else
                             {
