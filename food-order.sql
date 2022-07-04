@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2022 at 09:27 PM
+-- Generation Time: Jul 04, 2022 at 04:47 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `bank` (
-  `full_name` varchar(20) NOT NULL,
+  `user` varchar(20) NOT NULL,
   `account_no` double NOT NULL,
   `pincode` int(11) NOT NULL,
   `diposit` int(11) NOT NULL
@@ -38,10 +38,11 @@ CREATE TABLE `bank` (
 -- Dumping data for table `bank`
 --
 
-INSERT INTO `bank` (`full_name`, `account_no`, `pincode`, `diposit`) VALUES
-('tewedros_lounge', 1000222, 1010, 416),
-('user', 1000234, 1234, 456924),
-('abe', 1000235, 4545, 4);
+INSERT INTO `bank` (`user`, `account_no`, `pincode`, `diposit`) VALUES
+('tewedros_lounge', 1000222, 1010, 566),
+('user', 1000234, 1234, 456774),
+('abe', 1000235, 4545, 4),
+('nahom', 1000222422257, 1234, 1000);
 
 -- --------------------------------------------------------
 
@@ -114,6 +115,18 @@ INSERT INTO `employees` (`id`, `fname`, `lname`, `gender`, `phone`, `role`, `add
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `fedback`
+--
+
+CREATE TABLE `fedback` (
+  `sender` varchar(20) NOT NULL,
+  `message` longtext NOT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `schedule`
 --
 
@@ -158,8 +171,8 @@ INSERT INTO `tbl_admin` (`id`, `full_name`, `username`, `password`, `role`, `sta
 (17, 'Admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin', 'active'),
 (21, 'nahom ', 'nah1', '24c9e15e52afc47c225b757e7bee1f9d', 'customer', 'Yes'),
 (23, 'dagne', 'da', '25d55ad283aa400af464c76d713c07ad', 'customer', 'active'),
-(28, 'dagne', 'dagne', 'c20ad4d76fe97759aa27a0c99bff6710', 'customer', 'active'),
-(31, 'dagne', 'dagne', '11fd209b26c13a28ee511d6939191c89', 'Casher', 'active'),
+(28, 'dagne', 'dagne', '09738fe6357dad83bce9bcd496755ae7', 'customer', 'active'),
+(31, 'dagne', 'dagne', '09738fe6357dad83bce9bcd496755ae7', 'Casher', 'active'),
 (32, 'almi', 'almi', '5ec16c9e099189f1e555065ba84ba617', 'Kichen', 'active'),
 (33, 'abebe', 'abe', 'f64cff138020a2060a9817272f563b3c', 'Waiter', 'active'),
 (34, '', 'bar', '1e7f0bbc56c5ba6791108be53a75f494', 'Barista', 'de-active'),
@@ -184,7 +197,10 @@ INSERT INTO `tbl_admin` (`id`, `full_name`, `username`, `password`, `role`, `sta
 (61, 'nahom', 'admin', 'e4d071b7fec8d2cabda8c415e106382a', 'customer', 'active'),
 (62, 'nahom', 'admin', 'e4d071b7fec8d2cabda8c415e106382a', 'customer', 'active'),
 (63, 'nahom', 'admin', 'e4d071b7fec8d2cabda8c415e106382a', 'customer', 'active'),
-(64, 'nahom', 'admin', 'e4d071b7fec8d2cabda8c415e106382a', 'customer', 'active');
+(64, 'nahom', 'admin', 'e4d071b7fec8d2cabda8c415e106382a', 'customer', 'active'),
+(65, '0', 'admin', '202cb962ac59075b964b07152d234b70', 'Admin', 'active'),
+(66, '0', '', 'd41d8cd98f00b204e9800998ecf8427e', 'Admin', 'de-active'),
+(67, 'admin', 'adaa', '3ec89b4d68df59a0a5ce9eadd762d694', 'customer', 'active');
 
 -- --------------------------------------------------------
 
@@ -264,7 +280,12 @@ INSERT INTO `tbl_order` (`id`, `food`, `price`, `qty`, `total`, `order_date`, `s
 (37, 'eggs', '30.00', 1, '30.00', '2022-06-26 10:46:32', 'taken', 'nahom', '0943'),
 (38, 'coca cola', '20.00', 1, '20.00', '2022-06-26 10:47:24', 'taken', 'nahom', '0987'),
 (39, 'firfir', '30.00', 1, '30.00', '2022-06-27 12:08:28', 'taken', 'abebe', '09'),
-(40, 'eggs', '30.00', 1, '30.00', '2022-06-28 08:24:11', 'On Delivery', 'nahom', '09');
+(40, 'eggs', '30.00', 1, '30.00', '2022-06-28 08:24:11', 'On Delivery', 'nahom', '09'),
+(41, 'eggs', '30.00', 1, '30.00', '2022-07-04 04:14:03', 'Ordered', 'dagne', '0909'),
+(42, 'eggs', '30.00', 1, '30.00', '2022-07-04 04:14:19', 'Ordered', 'dagne', '0909'),
+(43, 'eggs', '30.00', 1, '30.00', '2022-07-04 04:16:42', 'Ordered', 'dagne', '09'),
+(44, 'eggs', '30.00', 1, '30.00', '2022-07-04 04:20:23', 'Ordered', 'dagne', '09'),
+(45, 'eggs', '30.00', 1, '30.00', '2022-07-04 04:20:36', 'Ordered', 'dagne', '09');
 
 -- --------------------------------------------------------
 
@@ -298,7 +319,8 @@ INSERT INTO `users` (`first_name`, `lname`, `email`, `phone`, `gender`) VALUES
 ('nahom', 'abebe', '', 8388607, 'Male'),
 ('nahom', 'abebe', '', 8388607, 'Male'),
 ('nahom', 'abebe', '', 8388607, 'Male'),
-('nahom', 'abebe', '', 8388607, 'Male');
+('nahom', 'abebe', '', 8388607, 'Male'),
+('admin', 'abebe', '', 8388607, 'Male');
 
 --
 -- Indexes for dumped tables
@@ -354,7 +376,7 @@ ALTER TABLE `employees`
 -- AUTO_INCREMENT for table `tbl_admin`
 --
 ALTER TABLE `tbl_admin`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `tbl_category`
@@ -372,7 +394,7 @@ ALTER TABLE `tbl_food`
 -- AUTO_INCREMENT for table `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

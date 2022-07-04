@@ -23,7 +23,7 @@
                     <li><a href="manage-category.php">Category</a></li>
                     <li><a href="manage-food.php">Food</a></li> -->
                     <li><a href="manege-employee.php">Manage_Emloyee</a></li>
-                    <li><a href="manage-schedule.php">Mange-Schedule</a></li>
+                    <!-- <li><a href="manage-schedule.php">Mange-Schedule</a></li> -->
                     <li><a href="report.php">See-Reports</a></li>
                     <li><a href="manage-order.php">Orders</a></li>
                     <li>
