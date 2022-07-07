@@ -78,7 +78,7 @@
                             <!-- <option <?php if($status=="Ordered"){echo "selected";} ?> value="Ordered">Ordered</option>
                             <option <?php if($status=="On Delivery"){echo "selected";} ?> value="On Delivery">On Delivery</option> -->
                             <option <?php if($status=="Delivering"){echo "selected";} ?> value="Delivering">Delivering</option>
-                            <option <?php if($status=="Delivered"){echo "selected";} ?> value="Delivered">Delivered</option>
+                            <!-- <option <?php if($status=="Delivered"){echo "selected";} ?> value="Delivered">Delivered</option> -->
                         </select>
                     </td>
                 </tr>

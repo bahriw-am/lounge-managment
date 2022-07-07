@@ -54,6 +54,24 @@
           font-family: 'Times New roman';">
 
             The System has the following future's </h4>
+            1. Customers - customers are the system users which can get service from the lounge.
+        They view the type of food from the menu and order
+        Make payment in cash to the cashier. 
+        If a student is non-cafe he/she may buy tick 
+        <br>
+        2. Cashier:-cashier is a person which is responsible for:-
+        Give tickets for the students/customers
+        <br>
+        Report the sold food daily in the paper
+        3. Managers:-Register employees 
+        4. Waiters:- is persons who deliver the foods and have the following duties:
+        Call customers/students.
+        Deliver the food to the students/ customers.
+        <br>
+        5. Kitchen: are persons which are preparing food.
+        View order histories and prepare food based on the type of ordered food.
+        <br>
+        6. Baristas: are persons who prepare hot drinks like tea, Almond.
 
         </div>
         <br>

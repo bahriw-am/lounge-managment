@@ -14,6 +14,7 @@ $email = "";
 $sex = "";
 $pass1   = "";
 $pass2   = "";
+$phone="";
 $err= array(); 
 $congra="";
 
@@ -74,18 +75,20 @@ if(isset($_POST['SIGNUP'])){
       }
       $user_check_query = "SELECT * FROM tbl_admin";
       $result = mysqli_query($conn, $user_check_query);
-      $user1 = mysqli_fetch_assoc($result);
-      if ($user1['username'] == $username) {
+     while($user = mysqli_fetch_assoc($result)){
+      if ($user['username'] == $username) {
         array_push($err, "username already exist!");
        
-       }}
+       }
+     }
+      }
 
     
   
      // Finally, register user if there are no errors in the form
   if (count($err) == 0) {
       $query = "INSERT INTO users ( first_name, lname, email,phone,gender) 
-            VALUES('$fname', '$lname','$email','$phone',  '$gender')";
+            VALUES('$fname', '$lname','$email','$phone','$gender')";
       mysqli_query($conn, $query);
 
       $sql = "INSERT INTO tbl_admin SET 
@@ -119,7 +122,7 @@ if(isset($_POST['SIGNUP'])){
       <input type="text" name="lname" id="" placeholder="Enter Last name"required pattern="[a-zA-Z]*" title="name must be character">
       <input type="text" name="username" id="" placeholder="Enter user name"required minlength="4">
       <input type="email" name="email" id="" placeholder="Enter Email">
-      <input type="text" name="phone" id="" placeholder="Enter phone"required>
+      <input type="number" name="phone" id="" placeholder="Enter phone" required>
 </div>
 <div style="float:right;width:45%">
       <input type="password" name="pass1" id="" placeholder="Enter Password"required>

@@ -1,5 +1,13 @@
-<?php include('partial-front/menu.php'); ?>
-
+<?php include('partial-front/menu.php'); 
+$balance="";
+?>
+        <?php 
+            if(isset($_SESSION['order'])) //Checking whether the SEssion is Set of Not
+            {
+                echo $_SESSION['order']; //Display the SEssion Message if SEt
+                unset($_SESSION['order']); //Remove Session Message
+            }
+        ?>
     <?php 
         //CHeck whether food id is set or not
         if(isset($_GET['food_id']))
@@ -43,7 +51,7 @@
         <div class="container">
             
             <h2 class="text-center text-white">Fill this form to confirm your order.</h2>
-
+           <div id="error"></div>
             <form action="" method="POST" class="order">
                 <fieldset>
                     <legend>Selected Food</legend>
@@ -172,14 +180,21 @@
                                 $sql1="UPDATE bank set diposit=diposit+$total WHERE account_no=1000222";
                                 $ress = mysqli_query($conn, $sql1);
                                 $message="<script> alert('Food Ordered Successfully');</script>";
-                                $message2="<script> alert('Your Current Balance is')+;</script>";
-                                echo $message.'Your Current Balance is';
+                                $user_check_query = "SELECT diposit FROM bank WHERE account_no=$customer_account AND pincode=$account_pincode";
+                                $result = mysqli_query($conn, $user_check_query);
+                                $diposit = mysqli_fetch_assoc($result);
+                                $deposit= $diposit['diposit'];
+                                $balance= "your current balance is ".$deposit;
+                                $message2="<script> alert(' $balance'+' Birr');</script>";
+                                echo $message.$message2;
+
                                    //  header('location:'.SITEURL);
                             }
                             else
                             {
                                 //Failed to Save Order
                                 $message="<script> alert('Failed to Order Food');</script>";
+                              //  $message="<script> alert('Failed to Order Food');</script>";
                                 echo $message;
                               //  $_SESSION['order'] = "<div class='error text-center'>Failed to Order Food.</div>";
                               //  header('location:'.SITEURL);
@@ -189,8 +204,10 @@
                         {
                             //Failed to Save Order
                             $message="<script> alert('you have no suficient ballance');</script>";
+                          //  $message="<script> alert('you have no suficient ballance');</script>";
                             echo $message;
-                         //   $_SESSION['order'] = "<div class='error text-center'>you have no suficient ballance.</div>";
+                            echo "<h1>you have no suficient ballance</h1> ";
+                            $_SESSION['order'] = "<div class='error text-center'>you have no suficient ballance.</div>";
                          //  header('location:'.SITEURL);
                         }
                     }
@@ -198,7 +215,10 @@
                     {
                         //Failed to Save Order
                         $message="<script> alert('accouunt number doesn't exist or incorrect pin');</script>";
-                        echo $message;
+                       // $message="<script> alert('accouunt number doesn't exist or incorrect pin');</script>";
+                       echo $message;
+                         echo "<h1>accouunt number doesn't exist or incorrect pin</h1>";
+                       
                         $_SESSION['order'] = "<div class='error text-center'>accouunt number doesn't exist or incorrect pin.</div>";
                       //  header('location:'.SITEURL);
                     }

@@ -53,7 +53,20 @@
           font-weight: bold; 
           font-family: 'Times New roman';">
             The outcome of the project can be seen in many directions as:-</h4>
-
+            <ul>
+              <li>
+                A user can create account and login. after login the customer can order based on the menu.
+              </li> <br>
+              <li>
+                Admin control all over the system. and also create account for employees 
+              </li><br>
+              <li>
+                casher can add foods 
+              </li><br>
+              <li>
+                barista and Kichen announce when food or drinking is finshed
+              </li><br>
+          </ul>
 
         </div>
         <br>

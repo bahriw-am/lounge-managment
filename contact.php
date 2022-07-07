@@ -57,7 +57,7 @@ include('partials-front/menu.php');
                                     $date = date("d-m-y");
                                     //`id`, `sender`, `message`, `date`
                                     if (!empty($message)) {
-                                        if ($conn->query("INSERT INTO feedback(`sender`, `message`, `date`) 
+                                        if ($conn->query("INSERT INTO fedback(sender, message, date) 
                                     VALUES ('$sender','$message','$date')")) {
                                             $info = "<i style='color: green'>Your message is successfuly sent</i>";
                                         } else {
@@ -67,7 +67,7 @@ include('partials-front/menu.php');
                                         $info = "Sorry ! The Message Area is Empity";
                                     }
                                 }
-                                print "$info";
+                              //  print "$info";
                                 ?>
                                 <hr>
                             
@@ -101,10 +101,10 @@ include('partials-front/menu.php');
                           <li> <b><i> Address</i></b></li>
                             <hr>
                                 <ul>
-                                <li>Facbook </li>
-                                <li>Telegram </li>
-                                <li>Tell </li>
-                                <li>Website </li>
+                                <li>Facbook :<a href="" style=" color: #ffc107;">www.facbook.com/tewedros_lounge</a> </li>
+                                <li>Telegram :<a href="" style=" color: #ffc107;">T.me/tewodrosL</a></li>
+                                <li>Tell :<a href="" style=" color: #ffc107;">0582201212</a></li>
+                                <li>Website :<a href="<?php echo SITEURL; ?>" style=" color: #ffc107;">www.tewodros-lounge.org</a></li>
                             </ul>
                             </div>
                         </fieldset>
