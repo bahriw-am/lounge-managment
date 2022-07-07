@@ -63,7 +63,7 @@
                         <th>Address</th>
                         <th>Role</th>
                         <th>Status</th>
-                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         &nbsp;&nbsp;&nbsp;Actions</th>
                     </tr>
 
@@ -113,7 +113,7 @@
                                         <td><?php echo $role; ?></td>
                                         <td><?php echo $status; ?></td>
                                         <td>
-                                            <a href="" class="btn-secondary">Update Account</a>
+                                            <!-- <a href="" class="btn-secondary">Update Account</a> -->
                                             <a href="<?php echo SITEURL; ?>manager/delete-admin.php?id=<?php echo $id; ?>" class="btn-danger"> <?php 
                                                
                                                if($status=="active")

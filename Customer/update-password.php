@@ -68,15 +68,8 @@
                 $current_password = md5($_POST['current_password']);
                 $new_password = md5($_POST['new_password']);
                 $confirm_password = md5($_POST['confirm_password']);
-                $password = ($_POST['new_password']);
+               // $password = ($_POST['new_password']);
 
-                $upercase=preg_match('@[A-Z]@',$password);
-                $lowercase=preg_match('@[a-z]@',$password);
-                $number=preg_match('@[0-9]@',$password);
-                $specialchar=preg_match('@[^\w]@',$password);
-                if(!$upercase || !$lowercase || !$number || !$specialchar ||strlen($password)<=7){
-                  array_push($err, "password must be at least 8 characer and include uppercase,lowercase,number and special characters");
-                  }
                 //2. Check whether the user with current ID and Current Password Exists or Not
                 
                 $sql = "SELECT * FROM tbl_admin WHERE id=$id AND password='$current_password'";
@@ -95,7 +88,7 @@
                         //echo "User FOund";
 
                         //Check whether the new password and confirm match or not
-                        if($new_password==$confirm_password && $err=0)
+                        if($new_password==$confirm_password)
                         {
                             //Update the Password
                             $sql2 = "UPDATE tbl_admin SET 

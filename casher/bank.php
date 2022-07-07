@@ -21,26 +21,25 @@ if(isset($_POST['SIGNUP'])){
 
     $user_check_query = "SELECT * FROM bank";
     $result = mysqli_query($conn, $user_check_query);
-    $user = mysqli_fetch_assoc($result);
+   while($user = mysqli_fetch_assoc($result)){
 
      if ($user) { 
        // if user exists
       if ($user['account_no'] === $account) {
         array_push($err, "Account already exist!");
        
-      }
+      }}}
      // Finally, register user if there are no errors in the form
   if (count($err) == 0) {
       $query = "INSERT INTO bank ( user, account_no, pincode,diposit) 
             VALUES('$username', '$account','$pincode','$diposit')";
-      mysqli_query($conn, $query);
-
-
+  mysqli_query($conn, $query);
   //3. Executing Query and Saving Data into Datbase
-  $res = mysqli_query($conn, $query) or die(mysqli_error());
+// if($res = mysqli_query($conn, $query))
         //echo "You are successfully registerd! login please!";
         $congra="You are successfully registerd! account Info!";
-}}
+}
+ 
 }
 ?>
 

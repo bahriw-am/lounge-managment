@@ -63,28 +63,7 @@
                     Total Orders
                 </div>
 
-                <div class="col-4 text-center">
-                    
-                    <?php 
-                        //Creat SQL Query to Get Total Revenue Generated
-                        //Aggregate Function in SQL
-                        $sql4 = "SELECT SUM(total) AS Total FROM tbl_order WHERE status='Delivered'";
-
-                        //Execute the Query
-                        $res4 = mysqli_query($conn, $sql4);
-
-                        //Get the VAlue
-                        $row4 = mysqli_fetch_assoc($res4);
-                        
-                        //GEt the Total REvenue
-                        $total_revenue = $row4['Total'];
-
-                    ?>
-
-                    <h1><?php echo $total_revenue; ?> birr</h1>
-                    <br />
-                    Revenue Generated
-                </div>
+              
 
                 <div class="clearfix"></div>
 

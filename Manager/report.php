@@ -60,7 +60,7 @@
 
                     <?php 
                         //Get all the orders from database
-                        $sql = "SELECT * FROM tbl_order where status='taken' ORDER BY id DESC"; // DIsplay the Latest Order at First
+                        $sql = "SELECT * FROM tbl_order ORDER BY id DESC"; // DIsplay the Latest Order at First
                         //Execute Query
                         $res = mysqli_query($conn, $sql);
                         //Count the Rows

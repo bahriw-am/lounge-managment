@@ -85,7 +85,7 @@
                     <input type="text" name="full-name" value="<?php echo $user ?>" class="input-responsive" required>
 
                     <div class="order-label">Phone Number</div>
-                    <input type="number" name="contact" placeholder="E.g. 9843xxxxxx" class="input-responsive" min="0" required>
+                    <input type="number" name="contact" placeholder="E.g. 9843xxxxxx" class="input-responsive" min="0" required pattern="[0-9]{10}" title="Phone must be 10 in length" minlength="10">
 
                     <div class="order-label">Account_No</div>
                     <input type="number" name="account" placeholder="bank account" class="input-responsive" min="0" required>
@@ -174,6 +174,14 @@
                                 $res = mysqli_query($conn, $sql);
                                 $sql1="UPDATE bank set diposit=diposit+$total WHERE account_no=1000222";
                                 $ress = mysqli_query($conn, $sql1);
+                                $message="<script> alert('Food Ordered Successfully');</script>";
+                                $user_check_query = "SELECT diposit FROM bank WHERE account_no=$customer_account AND pincode=$account_pincode";
+                                $result = mysqli_query($conn, $user_check_query);
+                                $diposit = mysqli_fetch_assoc($result);
+                                $deposit= $diposit['diposit'];
+                                $balance= "your current balance is ".$deposit;
+                                $message2="<script> alert(' $balance'+' Birr');</script>";
+                                echo $message.$message2;
                               //  header('location:'.SITEURL);
                             }}
                             else

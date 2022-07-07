@@ -74,10 +74,15 @@ if(isset($_POST['SIGNUP'])){
       array_push($err, "Email already exist!");
      
      }
+     $user_check_query = "SELECT * FROM tbl_admin";
+     $result = mysqli_query($conn, $user_check_query);
+    while($user = mysqli_fetch_assoc($result)){
      if ($user['username'] == $username) {
        array_push($err, "username already exist!");
       
-      }}
+      }
+    }
+    }
 
     
   
@@ -113,7 +118,7 @@ if(isset($_POST['SIGNUP'])){
   <link rel="stylesheet" href="../css/signup_style.css">
 </head>
 <body>
-<div class="box2" style="height:65%;left:50%;width:50%; margin-top: 70px;margin-left: 70px;">
+<div class="box2" style="height:65%;left:50%;width:50%; margin-top: 70px;margin-left: 70px;padding:1%">
     <h1>SIGN UP HERE</h1>
     <div class="err">
     <?php include('err.php'); 

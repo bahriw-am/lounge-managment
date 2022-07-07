@@ -8,7 +8,7 @@
             //Category id is set and get the id
             $category_id = $_GET['category_id'];
             // Get the CAtegory Title Based on Category ID
-            $sql = "SELECT title FROM tbl_category WHERE id=$category_id";
+            $sql = "SELECT title FROM tbl_category WHERE id=$category_id ";
 
             //Execute the Query
             $res = mysqli_query($conn, $sql);
@@ -47,7 +47,7 @@
             <?php 
             
                 //Create SQL Query to Get foods based on Selected CAtegory
-                $sql2 = "SELECT * FROM tbl_food WHERE category_id=$category_id";
+                $sql2 = "SELECT * FROM tbl_food WHERE category_id=$category_id and active='Yes'";
 
                 //Execute the Query
                 $res2 = mysqli_query($conn, $sql2);
@@ -80,7 +80,7 @@
                                     {
                                         //Image Available
                                         ?>
-                                        <img src="<?php echo SITEURL; ?>images/food/<?php echo $image_name; ?>" alt="Chicke Hawain Pizza" class="img-responsive img-curve">
+                                        <img src="<?php echo SITEURL; ?>images/food/<?php echo $image_name; ?>"  class="img-responsive img-curve">
                                         <?php
                                     }
                                 ?>
@@ -95,7 +95,8 @@
                                 </p>
                                 <br>
 
-                                <a href="<?php echo SITEURL; ?>customer/login.php?food_id=<?php echo $id; ?>" class="btn btn-primary">Order Now</a>
+                            <a href="<?php echo SITEURL; ?>customer/login.php?food_id=<?php echo $id; ?>" class="btn btn-primary">Order Now</a>
+                                <!-- <a href="<?php echo SITEURL; ?>customer/login.php?food_id=<?php echo $id; ?>" class="btn btn-primary">Order Now</a> -->
 
                             </div>
                         </div>

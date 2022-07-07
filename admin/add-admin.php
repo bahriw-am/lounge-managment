@@ -68,7 +68,7 @@
                                 {
                                     //WE do not have category
                                     ?>
-                                    <option value="0">No new Employee Found</option>
+                                    <option value="">No new Employee Found</option>
                                     <?php
                                 }
                             
@@ -91,36 +91,14 @@
                     <td>Password: </td>
                     <td>
                         <input type="password" name="password" id="pass" placeholder="Your Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required minlength="8">
-                        <input type="checkbox" onclick="myFunction()">Show
-
-<script>
-function myFunction() {
-  var x = document.getElementById("pass");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
-}
-</script></td>
+</td>
                 </tr>
 
                 <tr>
                     <td>Re-Password: </td>
                     <td>
                         <input type="password" name="repassword" id="repass" placeholder="confirm Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required minlength="8">
-                        <input type="checkbox" onclick="myFunction2()">Show
-
-<script>
-function myFunction2() {
-  var x = document.getElementById("repass");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
-}
-</script> </td>
+ </td>
                 </tr>
 
                 <tr>
@@ -174,14 +152,23 @@ function myFunction2() {
             array_push($err, "The two passwords do not match");
             }
             $pass = md5($_POST['password']); //Password Encryption with MD5
-            $upercase=preg_match('@[A-Z]@',$pass);
-            $lowercase=preg_match('@[a-z]@',$pass);
-            $number=preg_match('@[0-9]@',$pass);
-            $specialchar=preg_match('@[^\w]@',$pass);
-            if(!$upercase || !$lowercase || !$number || !$specialchar){
-              array_push($err, "password must be include uppercase,lowercase,number and special characters");
-              $paserr="password must be include uppercase,lowercase,number and special characters";}
-     if (count($err) == 0) {
+            // $upercase=preg_match('@[A-Z]@',$pass);
+            // $lowercase=preg_match('@[a-z]@',$pass);
+            // $number=preg_match('@[0-9]@',$pass);
+            // $specialchar=preg_match('@[^\w]@',$pass);
+            // if(!$upercase || !$lowercase || !$number || !$specialchar){
+            //   array_push($err, "password must be include uppercase,lowercase,number and special characters");
+            //   $paserr="password must be include uppercase,lowercase,number and special characters";}
+            $user_check_query = "SELECT * FROM tbl_admin";
+            $result = mysqli_query($conn, $user_check_query);
+           while($user = mysqli_fetch_assoc($result)){
+            if ($user['username'] == $username) {
+              array_push($err, "username already exist!");
+             
+             }
+           }
+      
+            if (count($err) == 0) {
         //2. SQL Query to Save the data into database
         $sql = "INSERT INTO tbl_admin SET 
             full_name='$full_name',
@@ -215,7 +202,7 @@ function myFunction2() {
             echo $paserr;
            include('../err.php');
             //Redirect Page to Add Admin
-            header("location:".SITEURL.'admin/manage-admin.php');
+          //  header("location:".SITEURL.'admin/manage-admin.php');
         }
 
     }

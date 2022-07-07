@@ -4,7 +4,6 @@
     <div class="container">
         
         <h2 class="text-center text-white">Fill this form to confirm your comment.</h2>
-
         <form action="" method="POST" class="order">
                 
             <fieldset>
@@ -45,9 +44,10 @@
                 //Check whether query executed successfully or not
                 if($res2==true)
                 {
+                   //$good='<h1>  commented Successfully thanks for visiting';
                     //Query Executed and Order Saved
-                  //  $message="<script> alert('success text-center'>commented Successfully thanks for visiting');</script>";
-                    echo $message;
+               $message="<script> alert('success text-center'>commented Successfully thanks for visiting');</script>";
+                    echo '<h1>  commented Successfully thanks for visiting';
                    // $_SESSION['order'] = "<div class='success text-center'>commented Successfully thanks for visiting.</div>";
                    //header('location:'.SITEURL);
                 }

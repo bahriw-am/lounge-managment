@@ -44,9 +44,9 @@
                         <a href="<?php echo SITEURL; ?>customer/foods.php">Food-Menu</a>
                     </li>
                    
-                    <li>
+                    <!-- <li>
                         <a href="#">Contact</a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="<?php echo SITEURL; ?>customer/give_comment.php">Comment</a>
                     </li>
